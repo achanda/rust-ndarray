@@ -672,7 +672,7 @@ impl<A, S, D> ArrayBase<S, D> where S: Data<Elem=A>, D: Dimension
     }
 
     /// Return the number of dimensions (axes) in the array
-    fn ndim(&self) -> usize {
+    pub fn ndim(&self) -> usize {
         self.dim.ndim()
     }
 
@@ -1196,6 +1196,7 @@ impl<A, S, D> ArrayBase<S, D> where S: Data<Elem=A>, D: Dimension
         true
     }
 
+    #[cfg(feature = "rblas")]
     /// Return `true` if the innermost dimension is contiguous (includes
     /// the special cases of 0 or 1 length in that axis).
     fn is_inner_contiguous(&self) -> bool {
